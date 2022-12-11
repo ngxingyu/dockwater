@@ -1,8 +1,9 @@
 # Ubuntu 20.04 
-FROM ros:galactic-ros-base-focal
+FROM ros:humble-ros-base
 
 # Setup timezone
 ENV TZ=Etc/UTC
+ENV LC_ALL=C
 RUN echo $TZ > /etc/timezone && \
   ln -fs /usr/share/zoneinfo/$TZ /etc/localtime
   
@@ -36,10 +37,14 @@ RUN apt-get update && \
 	net-tools \
 	pkg-config \
         protobuf-compiler \
+        python3-colcon-common-extensions \
+        python3-colcon-mixin \
         python3-dbg \
         python3-empy \
         python3-numpy \
+        python3-rosdep \
         python3-setuptools \
+        python3-vcstool \
         python3-pip \
         python3-venv \
 	ruby \
@@ -51,20 +56,23 @@ RUN apt-get update && \
  && apt-get clean -qq
 
 # Setup locale
-ENV LC_ALL=C
 RUN apt update && sudo apt install locales \
   && locale-gen en_US en_US.UTF-8 \
   && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 \
   && apt-get clean -qq
 
-ARG ROSDIST=galactic
-ARG IGNDIST=fortress
-ENV IGNITION_VERSION fortress
+ARG ROSDIST=humble
+ARG IGNDIST=garden
+ENV IGNITION_VERSION garden
 
-# Install ignition fortress and ROS2 Desktop
+RUN wget https://packages.osrfoundation.org/gazebo.gpg -O /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
+
+# Install gz garden and ROS2 Desktop
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
-     ignition-${IGNDIST} \
+     gz-${IGNDIST} \
+     ros-${ROS_DISTRO}-ros-ign \
      ros-${ROSDIST}-desktop \
   && rm -rf /var/lib/apt/lists/* \
   && apt-get clean -qq
@@ -74,6 +82,7 @@ RUN apt update \
   && apt install -y --no-install-recommends \
      python3-colcon-common-extensions \
      python3-vcstool \
+     python3-sdformat13 \
      ros-${ROSDIST}-radar-msgs \
      ros-${ROSDIST}-ament-cmake-pycodestyle \
      ros-${ROSDIST}-xacro \
@@ -85,8 +94,8 @@ RUN apt update \
      ros-${ROSDIST}-rqt-plot \
      ros-${ROSDIST}-rqt-topic \
      ros-${ROSDIST}-rviz2 \
-  && sudo rm -rf /var/lib/apt/lists/* \
-  && sudo apt-get clean -qq
+  && rm -rf /var/lib/apt/lists/* \
+  && apt-get clean -qq
 
 ## Customize your image here.
 

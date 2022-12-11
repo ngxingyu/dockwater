@@ -25,7 +25,7 @@ RUN apt update \
         protobuf-compiler \
         python3-dbg \
         python3-pip \
-	python3-scipy \
+	     python3-scipy \
         python3-venv \
         qtbase5-dev \
         ruby \
@@ -33,6 +33,13 @@ RUN apt update \
         sudo \
         wget \
  && apt clean
+
+# Setup locale
+ENV LC_ALL=C
+RUN apt update && sudo apt install locales \
+  && locale-gen en_US en_US.UTF-8 \
+  && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 \
+  && apt-get clean -qq
 
 # Fixing TimeZone problem reported in VRX 2019
 RUN export DEBIAN_FRONTEND=noninteractive \
@@ -52,6 +59,7 @@ RUN /bin/sh -c 'echo "deb http://packages.ros.org/ros/ubuntu ${RELEASE} main" > 
  && apt install -y --no-install-recommends \
     ${GAZ} \
     lib${GAZ}-dev \
+    python-catkin-tools \
     python-vcstool \
     ros-${DIST}-gazebo-plugins \
     ros-${DIST}-gazebo-ros \

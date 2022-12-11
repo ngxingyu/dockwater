@@ -34,6 +34,13 @@ RUN apt update \
         wget \
  && apt clean
 
+# Setup locale
+ENV LC_ALL=C
+RUN apt update && sudo apt install locales \
+  && locale-gen en_US en_US.UTF-8 \
+  && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 \
+  && apt-get clean -qq
+
 # Fixing TimeZone problem reported in VRX 2019
 RUN export DEBIAN_FRONTEND=noninteractive \
  && apt update \
