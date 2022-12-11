@@ -28,16 +28,16 @@ jobs:
         include:
           - dockerfile: ./melodic/Dockerfile
             image: ghcr.io/ngxingyu/dockwater
-            tag: melodic
+            tag: ghcr.io/ngxingyu/dockwater:melodic
           - dockerfile: ./noetic/Dockerfile
-            image: ghcr.io/ngxingyu/dockwater:noetic
-            tag: noetic
+            image: ghcr.io/ngxingyu/dockwater
+            tag: ghcr.io/ngxingyu/dockwater:noetic
           - dockerfile: ./galactic/Dockerfile
-            image: ghcr.io/ngxingyu/dockwater:galactic
-            tag: galactic
+            image: ghcr.io/ngxingyu/dockwater
+            tag: ghcr.io/ngxingyu/dockwater:galactic
           - dockerfile: ./humble/Dockerfile
-            image: ghcr.io/ngxingyu/dockwater:humble
-            tag: humble
+            image: ghcr.io/ngxingyu/dockwater
+            tag: ghcr.io/ngxingyu/dockwater:humble
 
     permissions:
       contents: read
