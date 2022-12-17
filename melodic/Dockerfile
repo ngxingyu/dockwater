@@ -61,6 +61,9 @@ RUN /bin/sh -c 'echo "deb http://packages.ros.org/ros/ubuntu ${RELEASE} main" > 
     lib${GAZ}-dev \
     python-catkin-tools \
     python-vcstool \
+    ros-${DIST}-image-transport \
+    ros-${DIST}-image-transport-plugins \
+    ros-${DIST}-image-pipeline \
     ros-${DIST}-gazebo-plugins \
     ros-${DIST}-gazebo-ros \
     ros-${DIST}-gazebo-ros-control \

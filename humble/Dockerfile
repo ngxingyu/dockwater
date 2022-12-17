@@ -39,6 +39,7 @@ RUN apt-get update && \
         protobuf-compiler \
         python3-colcon-common-extensions \
         python3-colcon-mixin \
+        python-is-python3 \
         python3-dbg \
         python3-empy \
         python3-numpy \
@@ -89,6 +90,7 @@ RUN apt update \
      ros-${ROSDIST}-image-transport \
      ros-${ROSDIST}-mavros-msgs \
      ros-${ROSDIST}-image-transport-plugins \
+     ros-${DIST}-image-pipeline \
      ros-${ROSDIST}-rqt-graph \
      ros-${ROSDIST}-rqt-image-view \
      ros-${ROSDIST}-rqt-plot \

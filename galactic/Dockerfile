@@ -78,6 +78,7 @@ RUN apt update \
      ros-${ROSDIST}-ament-cmake-pycodestyle \
      ros-${ROSDIST}-xacro \
      ros-${ROSDIST}-image-transport \
+     ros-${ROSDIST}-image-pipeline \
      ros-${ROSDIST}-mavros-msgs \
      ros-${ROSDIST}-image-transport-plugins \
      ros-${ROSDIST}-rqt-graph \

@@ -59,11 +59,15 @@ RUN /bin/sh -c 'echo "deb http://packages.ros.org/ros/ubuntu ${RELEASE} main" > 
  && apt install -y --no-install-recommends \
     ${GAZ} \
     lib${GAZ}-dev \
+    python-is-python3 \
     python3-catkin-tools \
     python3-rosdep \
     python3-rosinstall \
     python3-rosinstall-generator \
     python3-vcstool \
+    ros-${DIST}-image-transport \
+    ros-${DIST}-image-transport-plugins \
+    ros-${DIST}-image-pipeline \
     ros-${DIST}-gazebo-plugins \
     ros-${DIST}-gazebo-ros \
     ros-${DIST}-gazebo-ros-control \
