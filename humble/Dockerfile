@@ -90,7 +90,7 @@ RUN apt update \
      ros-${ROSDIST}-image-transport \
      ros-${ROSDIST}-mavros-msgs \
      ros-${ROSDIST}-image-transport-plugins \
-     ros-${DIST}-image-pipeline \
+     ros-${ROSDIST}-image-pipeline \
      ros-${ROSDIST}-rqt-graph \
      ros-${ROSDIST}-rqt-image-view \
      ros-${ROSDIST}-rqt-plot \
